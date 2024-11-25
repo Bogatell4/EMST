@@ -12,7 +12,7 @@ function [] = configureAdress()
      BCM_DAC_FREQ =         0x0E;
      DEVICE_CONTROL_2 =     0x0F;
      ADC_CONTROL_REGISTER_2 = 0x10;
-     MISC3_REGISTER =       0x1A;
+     MISC_REGISTER_3 =       0x1A;
 
 
      writeData(hex2dec(ADC_CONTROL_REGISTER),hex2dec(0x5120)); %Adc configuration, copied from previous 32-SPS
@@ -24,8 +24,12 @@ function [] = configureAdress()
      writeData(hex2dec(DEVICE_CONTROL_2),hex2dec(0x1000)); %Need to configure so IQdemod freq is BCM_DAC_freq x4
                                                      % (fclk/DIVFACT)=BCMx4
      writeData(hex2dec(BCM_DAC_FREQ),hex2dec(0x003E)); %Set to 62kHz BCM measurements, 0x00FF=255kHz ; 0x0001=1kHz
-                                                        %dependency on iq
-                                                        %div factor
+                                                        %dependency on iq div factor
+     writeData(hex2dec(ISW_MATRIX),hex2dec(0x0804)); %Pin configuration IOUTP1 and IOUTN0, RN RP open
+     writeData(hex2dec(VSW_MATRIX),hex2dec(0x0804)); %Pin configuration VSENSEP1 and VSENSEN0, RN RP open     
+     writeData(hex2dec(WEIGHT_SCALE_CONTROL),hex2dec(0x0000)); %Weight scale config, not used
+     writeData(hex2dec(ADC_CONTROL_REGISTER_2),hex2dec(0x0063)); % ADCREF connected to Vref, last digit 3 for I, and 5 for Q
+     writeData(hex2dec(MISC_REGISTER_3),hex2dec(0x0030)); %Not used, allways write this
 
 
 end
