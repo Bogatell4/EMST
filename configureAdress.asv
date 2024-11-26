@@ -22,8 +22,8 @@ function [] = configureAdress()
                                                      % (fclk/DIVFACT)=BCMx4
      writeData(hex2dec(BCM_DAC_FREQ),hex2dec(0x003E)); %Set to 62kHz BCM measurements, 0x00FF=255kHz ; 0x0001=1kHz
                                                         %dependency on iq div factor
-     writeData(hex2dec(ISW_MATRIX),hex2dec(0x0420)); %Pin configuration IOUTP0 and IOUTN3, RN RP open.
-     writeData(hex2dec(VSW_MATRIX),hex2dec(0x0420)); %Pin configuration VSENSEP0 and VSENSEN3, RN RP open     
+     writeData(hex2dec(ISW_MATRIX),hex2dec(0x0420)); %Pin configuration IOUTP0 and IOUTN3, RN RP open
+     writeData(hex2dec(VSW_MATRIX),hex2dec(0x0804)); %Pin configuration VSENSEP1 and VSENSEN0, RN RP open     
      writeData(hex2dec(WEIGHT_SCALE_CONTROL),hex2dec(0x0000)); %Weight scale config, not used
      writeData(hex2dec(ADC_CONTROL_REGISTER_2),hex2dec(0x0063)); % ADCREF connected to Vref, last digit 3 for I, and 5 for Q
      writeData(hex2dec(MISC_REGISTER_3),hex2dec(0x0030)); %Not used, allways write this
