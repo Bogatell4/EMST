@@ -1,6 +1,6 @@
 function [] = configureAdress()
 
-     ADC_DATA_RESULT =      0x00;
+
      ADC_CONTROL_REGISTER = 0x01;
      MISC_REGISTER_1 =       0x02;
      MISC_REGISTER_2 =       0x03;
@@ -30,12 +30,15 @@ function [] = configureAdress()
      writeData(hex2dec(WEIGHT_SCALE_CONTROL),hex2dec(0x0000)); %Weight scale config, not used
      writeData(hex2dec(ADC_CONTROL_REGISTER_2),hex2dec(0x0063)); % ADCREF connected to Vref, last digit 3 for I, and 5 for Q
      writeData(hex2dec(MISC_REGISTER_3),hex2dec(0x0030)); %Not used, allways write this
-
-
 end
 
 
-function [state] = configureFreq(freq)
-    int state, freq;
+function [magZ, phsZ] = readImpedance()
     
+     ADC_DATA_RESULT =      0x00;
+
+     writeData(hex2dec(ADC_CONTROL_REGISTER_2),hex2dec(0x0063)); % ADCREF connected to Vref, last digit 3 for I, and 5 for Q
+     magZ=readData(ADC_DATA_RESULT);
+     writeData(hex2dec(ADC_CONTROL_REGISTER_2),hex2dec(0x0065)); % ADCREF connected to Vref, last digit 3 for I, and 5 for Q
+     phsZ=readData(ADC_DATA_RESULT);
 end
