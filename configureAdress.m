@@ -13,10 +13,10 @@ function [] = configureAdress()
      ADC_CONTROL_REGISTER_2 = 0x10;
      MISC_REGISTER_3 =       0x1A;
 
-     writeData(hex2dec(ADC_CONTROL_REGISTER),hex2dec(0x5120)); %Adc configuration, copied from previous 32-SPS
+     writeData(hex2dec(ADC_CONTROL_REGISTER),hex2dec(0x4120)); %Adc configuration, copied from previous 32-SPS
      writeData(hex2dec(MISC_REGISTER_1),hex2dec(0x0000)); %Not used, always write 0x0000
      writeData(hex2dec(MISC_REGISTER_2),hex2dec(0xFFFF)); %allways write 0xFFFF by datasheet
-     writeData(hex2dec(DEVICE_CONTROL_1),hex2dec(0x600A)); % Power ON DAC, device and BCM
+     writeData(hex2dec(DEVICE_CONTROL_1),hex2dec(0x6006)); % Power ON DAC, device and BCM
      writeData(hex2dec(IQ_MODE_ENABLE),hex2dec(0x8000)); %Enable I/Q Demodulator mode
      writeData(hex2dec(DEVICE_CONTROL_2),hex2dec(0x1000)); %Need to configure so IQdemod freq is BCM_DAC_freq x4
                                                      % (fclk/DIVFACT)=BCMx4
